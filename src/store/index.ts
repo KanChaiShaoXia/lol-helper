@@ -2,29 +2,29 @@ import { Store } from "laco";
 import { cloneDeep } from "lodash-es";
 import { useEffect, useState } from "react";
 import { create } from 'zustand';
-import { UserName, data } from "../constant";
+import { UserName, data, defaultSkill } from "../constant";
 
 export const store = create(() => (
 {  userList: [
     {
       name: UserName.Top,
-      skill: [data.get("shanxian"), data.get("chuansong")],
+      skill: [defaultSkill.Flash, defaultSkill.Teleport],
     },
     {
       name: UserName.Jg,
-      skill: [data.get("shanxian"), data.get("chengjie")],
+      skill: [defaultSkill.Flash, defaultSkill.Smite],
     },
     {
       name: UserName.Ap,
-      skill: [data.get("shanxian"), data.get("yinran")],
+      skill: [defaultSkill.Flash, defaultSkill.Dot],
     },
     {
       name:UserName.Adc,
-      skill: [data.get("shanxian"), data.get("zhiliao")],
+      skill: [defaultSkill.Flash, defaultSkill.Heal],
     },
     {
       name:UserName.Sup,
-      skill: [data.get("shanxian"), data.get("xuruo")],
+      skill: [defaultSkill.Flash, defaultSkill.Exhaust],
     },
   ]}
 ));
@@ -39,13 +39,6 @@ export function useStore(store) {
   return state;
 }
 
-// 计时器列表
-export const timers = new Store(
-  {
-   ,
-  },
-  "timers"
-);
 
 // 全局计时器
 export const timerInterval = new Store(

@@ -64,7 +64,7 @@ export default function SkillBar() {
         {active &&
           defaultSkill.map((item) => {
             return (
-              <Image
+              <img
                 className={cx(
                   style.skillImg,
                   active === item.type && style.active
