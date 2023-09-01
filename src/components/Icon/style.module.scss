@@ -1,0 +1,68 @@
+.item {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  background: #000000;
+}
+
+.img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  font-size: 0;
+  filter: brightness(0.3);
+}
+
+.time {
+  line-height: 30px;
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.mask {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  transform: translate3d(-25%, 0, 0);
+  // animation: moveDeno 400s linear forwards;
+}
+
+.active {
+  animation: timeDeno 0.7s 5 linear reverse;
+  .img {
+    filter: brightness(1);
+  }
+  .time {
+    opacity: 0;
+  }
+  .mask {
+    background-color: transparent;
+  }
+}
+
+@keyframes moveDeno {
+  from {
+    transform: translate3d(-25%, 0, 0);
+  }
+  to {
+    transform: translate3d(-25%, 100%, 0);
+  }
+}
+
+@keyframes timeDeno {
+  from {
+    filter: brightness(1);
+  }
+  to {
+    filter: brightness(2);
+  }
+}

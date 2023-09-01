@@ -1,0 +1,65 @@
+.wrapper {
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  border: 3px solid #785a28;
+  background: linear-gradient(#014361, #011c2f);
+  color: #cdbe91;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.listItem {
+  margin-right: 10px;
+}
+
+.skillClose {
+  opacity: 0;
+  display: none;
+  width: 100%;
+}
+
+.skillOpen {
+  opacity: 1;
+  display: block;
+  width: 100%;
+}
+
+.copy {
+  width: 30px;
+  font-size: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.3s;
+  color: #785a28;
+  white-space: nowrap;
+  font-size: 12px;
+  &:hover {
+    color: #f0e6d2;
+  }
+  &:active {
+    color: #785a28;
+  }
+}
+
+.moveBar {
+  cursor: move;
+  position: absolute;
+  height: 10px;
+  top: -3px;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  -webkit-app-region: drag;
+}

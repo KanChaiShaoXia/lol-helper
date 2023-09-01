@@ -1,0 +1,32 @@
+{
+  "name": "lol-helper",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.4.0",
+    "@types/lodash-es": "^4.17.9",
+    "@types/node": "^20.5.7",
+    "classnames": "^2.3.2",
+    "laco": "^1.2.1",
+    "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.4.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "sass": "^1.66.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.4"
+  }
+}
