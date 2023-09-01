@@ -1,4 +1,4 @@
-export const data = new Map();
+import { cloneDeep, values } from "lodash-es";
 
 export enum Skills {
   /** 治疗 */
@@ -25,11 +25,11 @@ export enum Skills {
   Flash = "Flash",
 }
 
-export enum UserName {
+export enum RoleName {
   Top = "top",
-  Ap = "ap",
-  Sup = "sup",
-  Jg = "jg",
+  Mid = "mid",
+  Sup = "support",
+  Jg = "jungle",
   Adc = "adc",
 }
 
@@ -45,3 +45,32 @@ export const defaultSkill = {
   [Skills.Boost]: { resetTime: 210, type: Skills.Boost, time: 0 },
   [Skills.Smite]: { resetTime: 15, type: Skills.Smite, time: 0 },
 };
+
+export const defaultSkillList = values(defaultSkill);
+
+export type SkillInfoType = (typeof defaultSkillList)[number];
+
+export const defaultRoleList = [
+  {
+    name: RoleName.Top,
+    skill: [defaultSkill.Flash, defaultSkill.Teleport],
+  },
+  {
+    name: RoleName.Jg,
+    skill: [defaultSkill.Flash, defaultSkill.Smite],
+  },
+  {
+    name: RoleName.Mid,
+    skill: [defaultSkill.Flash, defaultSkill.Dot],
+  },
+  {
+    name: RoleName.Adc,
+    skill: [defaultSkill.Flash, defaultSkill.Heal],
+  },
+  {
+    name: RoleName.Sup,
+    skill: [defaultSkill.Flash, defaultSkill.Exhaust],
+  },
+].map((i) => cloneDeep(i));
+
+export type RoleType = (typeof defaultRoleList)[number];

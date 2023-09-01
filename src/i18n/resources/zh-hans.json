@@ -1,0 +1,20 @@
+{
+  "top": "上单",
+  "jungle": "打野",
+  "mid": "中单",
+  "adc": "ADC",
+  "support": "辅助",
+  "change": "修改",
+  "copy": "复制",
+  "Heal": "治疗",
+  "Haste": "幽灵疾步",
+  "Barrier": "屏障",
+  "Exhaust": "虚弱",
+  "Mana": "清晰术",
+  "Teleport": "传送",
+  "Boost": "净化",
+  "Dot": "引燃",
+  "Smite": "惩戒",
+  "Snowball": "标记",
+  "Flash": "闪现"
+}

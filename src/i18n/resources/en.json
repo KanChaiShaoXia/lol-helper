@@ -1,0 +1,20 @@
+{
+  "top": "Top",
+  "jungle": "Jungle",
+  "mid": "Mid",
+  "adc": "ADC",
+  "support": "Support",
+  "change": "Change",
+  "copy": "Copy",
+  "Heal": "Heal",
+  "Haste": "Haste",
+  "Barrier": "Barrier",
+  "Exhaust": "Exhaust",
+  "Mana": "Mana",
+  "Teleport": "Teleport",
+  "Boost": "Boost",
+  "Dot": "Dot",
+  "Smite": "Smite",
+  "Snowball": "Snowball",
+  "Flash": "Flash"
+}

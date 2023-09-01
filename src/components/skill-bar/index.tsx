@@ -1,19 +1,19 @@
 /* eslint-disable jsx-quotes */
-import { useState } from "react";
 import cx from "classnames";
-import { skillChange, checkUser, changeTimer, useStore } from "../../store";
-import { defaultSkill } from "../../constant";
+import { useState } from "react";
+import { SkillInfoType, Skills, defaultSkillList } from "../../constant";
+import { changeTimer, skillChange, useSelectRole } from "../../service";
 import style from "./style.module.scss";
-import { cloneDeep } from "lodash-es";
+import { Images } from "../../static";
 
 export default function SkillBar() {
-  const { user } = useStore(checkUser);
-  const [current, setCurrent] = useState(cloneDeep(user));
-  const [active, setActive] = useState(null);
+  const selectRole = useSelectRole();
+  const [current, setCurrent] = useState(selectRole);
+  const [active, setActive] = useState<Skills | null>(null);
 
   const backClick = () => {
     setActive(null);
-    setCurrent(cloneDeep(user));
+    setCurrent(selectRole);
     skillChange();
   };
 
@@ -22,7 +22,7 @@ export default function SkillBar() {
     backClick();
   };
 
-  const skillClick = (item) => {
+  const skillClick = (item: SkillInfoType) => {
     if (active === item.type) return;
     let result = current.skill.map((i) => {
       if (i.type === active) i = item;
@@ -54,7 +54,7 @@ export default function SkillBar() {
                 style.userAva,
                 item.type === active && style.active
               )}
-              src={item.path}
+              src={Images[item.type]}
               onClick={() => setActive(item.type)}
             />
           );
@@ -62,7 +62,7 @@ export default function SkillBar() {
       </div>
       <div className={style.skills}>
         {active &&
-          defaultSkill.map((item) => {
+          defaultSkillList.map((item) => {
             return (
               <img
                 className={cx(
@@ -70,7 +70,8 @@ export default function SkillBar() {
                   active === item.type && style.active
                 )}
                 key={item.type}
-                src={item.path}
+                src={Images[item.type]}
+                alt={item.type}
                 onClick={() => skillClick(item)}
               />
             );

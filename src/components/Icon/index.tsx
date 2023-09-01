@@ -1,21 +1,30 @@
-import cx from "classnames";
-import { data } from "../../constant";
+import { RoleType, SkillInfoType } from "../../constant";
 import style from "./style.module.scss";
 
-import { resetTimer } from "../../store";
+import { startTimer } from "../../service";
+import { Images } from "../../static";
 import { getTimeFormat } from "../../utils/tools";
+import { cx } from "../../utils/classnames";
 
-export default function Icon(props) {
-  const { skill, uesr } = props;
+interface Props {
+  skill: SkillInfoType;
+  role: RoleType;
+}
+export function SkillIcon(props: Props) {
+  const { skill, role } = props;
   const time = getTimeFormat(skill.time);
 
   return (
     <div
-      className={cx(style.item, skill.time === 0 && style.active)}
-      onClick={() => resetTimer(uesr, skill)}
-      onContextMenu={() => resetTimer(uesr, skill, true)}
+      className={cx(
+        "w-8 h-8 overflow-hidden relative text-center bg-black",
+        style.item,
+        skill.time === 0 && style.active
+      )}
+      onClick={() => startTimer(role.name, skill.type)}
+      onContextMenu={() => startTimer(role.name, skill.type, true)}
     >
-      <img className={style.img} src={data.get(skill.type)} />
+      <img className={style.img} src={Images[skill.type]} />
       <div className={style.time}>{time}</div>
     </div>
   );
