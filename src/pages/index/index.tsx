@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import SkillBar from "../../components/skill-bar";
-import { useOpenStatus, useRoleList } from "../../service";
+import { skillChange, useOpenStatus, useRoleList } from "../../service";
 import { getTimeFormat } from "../../utils/tools";
 import "./index.scss";
 import RoleBox from "./role-box";
@@ -28,7 +28,7 @@ export default function Index() {
 
   return (
     <div
-      className='overflow-hidden flex h-screen border-2 border-[#785a28] bg-gradient-body text-[#cdbe91] relative items-center justify-between px-2'
+      className='overflow-hidden flex h-screen border-2 border-p1 bg-gradient-body text-p2 relative items-center justify-between p-2 flex-col'
       onContextMenu={(e) => e.preventDefault()}
       style={{
         backgroundImage: "linear-gradient(#010A13, #010F19)",
@@ -43,9 +43,9 @@ export default function Index() {
       </div>
       <div
         className='w-7 text-xs text-center cursor-pointer transition-all duration-100 hover:brightness-150 whitespace-nowrap'
-        onClick={onCopy}
+        onClick={openStatus ? skillChange : onCopy}
       >
-        {t("copy")}
+        {t(openStatus ? "back" : "export")}
       </div>
     </div>
   );

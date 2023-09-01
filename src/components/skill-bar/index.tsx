@@ -1,4 +1,3 @@
-/* eslint-disable jsx-quotes */
 import cx from "classnames";
 import { useState } from "react";
 import { SkillInfoType, Skills, defaultSkillList } from "../../constant";
@@ -9,10 +8,9 @@ import style from "./style.module.scss";
 export default function SkillBar() {
   const selectRole = useSelectRole();
   const [current, setCurrent] = useState(selectRole);
-  const [active, setActive] = useState<Skills | null>(null);
+  const [active, setActive] = useState<Skills>(selectRole.skill[0].type);
 
   const backClick = () => {
-    setActive(null);
     setCurrent(selectRole);
     skillChange();
   };
@@ -34,23 +32,22 @@ export default function SkillBar() {
   };
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.userBox}>
-        {current.skill.map((item) => {
-          return (
-            <img
-              key={item.type}
-              className={cx(
-                style.userAva,
-                item.type === active && style.active
-              )}
-              src={Images[item.type]}
-              onClick={() => setActive(item.type)}
-            />
-          );
-        })}
+    <div className={"flex flex-col space-y-2 items-center justify-between"}>
+      <div className={"flex space-x-1"}>
+        {current.skill.map((item) => (
+          <img
+            key={item.type}
+            className={cx(
+              "cursor-pointer w-10 h-10 border border-p1 rounded-full transition-all brightness-50 hover:brightness-100",
+              style.userAva,
+              item.type === active && style.active
+            )}
+            src={Images[item.type]}
+            onClick={() => setActive(item.type)}
+          />
+        ))}
       </div>
-      <div className={style.skills}>
+      <div className={"grid grid-cols-2 gap-2"}>
         {active &&
           defaultSkillList.map((item) => {
             return (
