@@ -30,6 +30,9 @@ export default function Index() {
     <div
       className='overflow-hidden flex h-screen border-2 border-[#785a28] bg-gradient-body text-[#cdbe91] relative items-center justify-between px-2'
       onContextMenu={(e) => e.preventDefault()}
+      style={{
+        backgroundImage: "linear-gradient(#010A13, #010F19)",
+      }}
     >
       <div className='moveBar' />
       <div className={!openStatus ? "opacity-100" : "hidden"}>

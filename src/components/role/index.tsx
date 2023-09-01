@@ -16,7 +16,7 @@ export function Role(props: Props) {
 
   return (
     <div>
-      <div className='group transition-colors duration-100 bg-[#011c2f] text-center cursor-pointer relative text-xs py-1'>
+      <div className='group transition-colors duration-100 text-center cursor-pointer relative text-xs py-1'>
         <div
           className='absolute z-10 w-full transition-all duration-100 opacity-0 group-hover:opacity-100'
           onClick={clickItem}

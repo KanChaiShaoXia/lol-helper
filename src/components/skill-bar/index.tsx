@@ -3,8 +3,8 @@ import cx from "classnames";
 import { useState } from "react";
 import { SkillInfoType, Skills, defaultSkillList } from "../../constant";
 import { changeTimer, skillChange, useSelectRole } from "../../service";
-import style from "./style.module.scss";
 import { Images } from "../../static";
+import style from "./style.module.scss";
 
 export default function SkillBar() {
   const selectRole = useSelectRole();
@@ -17,34 +17,24 @@ export default function SkillBar() {
     skillChange();
   };
 
-  const saveClick = () => {
-    changeTimer(current);
-    backClick();
-  };
-
   const skillClick = (item: SkillInfoType) => {
     if (active === item.type) return;
     let result = current.skill.map((i) => {
       if (i.type === active) i = item;
       return i;
     });
+
     if (result[0].type === result[1].type) {
       result = current.skill.reverse();
     }
-    setCurrent({ name: current.name, skill: result });
+
     setActive(item.type);
+    changeTimer({ name: current.name, skill: result });
+    backClick();
   };
 
   return (
     <div className={style.wrapper}>
-      <div className={style.btns}>
-        <div className={style.btn} onClick={backClick}>
-          ✘
-        </div>
-        <div className={style.btn} onClick={saveClick}>
-          ✓
-        </div>
-      </div>
       <div className={style.userBox}>
         {current.skill.map((item) => {
           return (
