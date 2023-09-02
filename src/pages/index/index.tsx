@@ -2,9 +2,13 @@ import { LogicalSize, appWindow } from "@tauri-apps/api/window";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SkillBar from "../../components/skill-bar";
-import { skillChange, useOpenStatus, useRoleList } from "../../service";
+import {
+  resetTimer,
+  skillChange,
+  useOpenStatus,
+  useRoleList,
+} from "../../service";
 import { getTimeFormat } from "../../utils/tools";
-import "./index.scss";
 import RoleBox from "./role-box";
 
 export default function Index() {
@@ -34,25 +38,28 @@ export default function Index() {
 
   return (
     <div
-      className='overflow-hidden flex h-screen border-2 border-p1 text-p2 relative items-center justify-between p-2 flex-col'
+      className='overflow-hidden flex h-screen border-2 border-p1 text-p2 relative items-center justify-between pb-2 flex-col'
       style={{
         backgroundImage: "linear-gradient(#010A13, #010F19)",
       }}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <div className='moveBar' data-tauri-drag-region />
+      <div
+        className='cursor-move fixed z-10 w-full top-0 left-0 h-1.5'
+        data-tauri-drag-region
+      />
       <div className={!openStatus ? "opacity-100" : "hidden"}>
         <RoleBox />
       </div>
       <div className={openStatus ? "opacity-100" : "hidden"}>
         {openStatus && <SkillBar />}
       </div>
-      <div className='text-xs'>
-        <div
-          className='w-7 text-center cursor-pointer transition-all duration-100 hover:brightness-150 whitespace-nowrap'
-          onClick={openStatus ? skillChange : onCopy}
-        >
-          {t(openStatus ? "back" : "export")}
+      <div className='text-xs text-center whitespace-nowrap space-y-1'>
+        <div className='click' onClick={openStatus ? skillChange : onCopy}>
+          {t(openStatus ? "back" : "call")}
+        </div>
+        <div hidden={openStatus} className='click' onClick={resetTimer}>
+          {t("reset")}
         </div>
       </div>
     </div>

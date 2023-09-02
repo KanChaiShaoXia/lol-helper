@@ -5,3 +5,17 @@
 * {
   user-select: none;
 }
+
+.click,
+.mask-click {
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.mask-click {
+  filter: brightness(0.5);
+}
+
+.click:hover {
+  filter: brightness(1.5);
+}

@@ -17,6 +17,7 @@
   "Smite": "Smite",
   "Snowball": "Snowball",
   "Flash": "Flash",
-  "export": "export",
-  "back": "Back"
+  "call": "call",
+  "back": "Back",
+  "reset": "Reset"
 }

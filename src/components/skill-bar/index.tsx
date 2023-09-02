@@ -38,7 +38,7 @@ export default function SkillBar() {
           <img
             key={item.type}
             className={cx(
-              "cursor-pointer w-7 h-7 border border-p1 rounded-full transition-all brightness-50 hover:brightness-100",
+              "mask-click w-7 h-7 border border-p1 rounded-full transition-all",
               style.userAva,
               item.type === active && style.active
             )}

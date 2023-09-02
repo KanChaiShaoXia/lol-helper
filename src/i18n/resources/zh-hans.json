@@ -17,6 +17,7 @@
   "Smite": "惩戒",
   "Snowball": "标记",
   "Flash": "闪现",
-  "export": "喊话",
-  "back": "返回"
+  "call": "喊话",
+  "back": "返回",
+  "reset": "重置"
 }

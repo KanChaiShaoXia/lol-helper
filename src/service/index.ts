@@ -97,3 +97,13 @@ export const startTimer = (
   globalTimer.reset();
   $timerStore.setState((pre) => ({ ...pre, roleList }));
 };
+
+export const resetTimer = () => {
+  const roleList = getRoleList().map((item) => {
+    item.skill.map((i) => (i.time = 0));
+    return item;
+  });
+
+  globalTimer.reset();
+  $timerStore.setState((pre) => ({ ...pre, roleList }));
+};
