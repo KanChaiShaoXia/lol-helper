@@ -21,7 +21,7 @@ use windows::Win32::Foundation::{HWND, LPARAM};
 use windows::Win32::UI::WindowsAndMessaging::{EnumWindows, SetForegroundWindow};
 
 #[tauri::command]
-pub fn focus_other_app() {
+fn focus_other_app() {
     unsafe {
         EnumWindows(Some(enum_windows_callback), LPARAM(0));
     }
