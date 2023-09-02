@@ -1,5 +1,4 @@
 import { LogicalSize, appWindow } from "@tauri-apps/api/window";
-import { confirm } from "@tauri-apps/api/dialog";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SkillBar from "../../components/skill-bar";
@@ -39,6 +38,7 @@ export default function Index() {
       style={{
         backgroundImage: "linear-gradient(#010A13, #010F19)",
       }}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div className='moveBar' data-tauri-drag-region />
       <div className={!openStatus ? "opacity-100" : "hidden"}>
@@ -47,11 +47,13 @@ export default function Index() {
       <div className={openStatus ? "opacity-100" : "hidden"}>
         {openStatus && <SkillBar />}
       </div>
-      <div
-        className='w-7 text-xs text-center cursor-pointer transition-all duration-100 hover:brightness-150 whitespace-nowrap'
-        onClick={openStatus ? skillChange : onCopy}
-      >
-        {t(openStatus ? "back" : "export")}
+      <div className='text-xs'>
+        <div
+          className='w-7 text-center cursor-pointer transition-all duration-100 hover:brightness-150 whitespace-nowrap'
+          onClick={openStatus ? skillChange : onCopy}
+        >
+          {t(openStatus ? "back" : "export")}
+        </div>
       </div>
     </div>
   );
