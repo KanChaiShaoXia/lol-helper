@@ -1,3 +1,6 @@
+import { LogicalSize, appWindow } from "@tauri-apps/api/window";
+import { confirm } from "@tauri-apps/api/dialog";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SkillBar from "../../components/skill-bar";
 import { skillChange, useOpenStatus, useRoleList } from "../../service";
@@ -26,15 +29,18 @@ export default function Index() {
     navigator.clipboard.writeText(result.join("\n"));
   };
 
+  useEffect(() => {
+    void appWindow.setSize(new LogicalSize(80, 320));
+  }, []);
+
   return (
     <div
-      className='overflow-hidden flex h-screen border-2 border-p1 bg-gradient-body text-p2 relative items-center justify-between p-2 flex-col'
-      onContextMenu={(e) => e.preventDefault()}
+      className='overflow-hidden flex h-screen border-2 border-p1 text-p2 relative items-center justify-between p-2 flex-col'
       style={{
         backgroundImage: "linear-gradient(#010A13, #010F19)",
       }}
     >
-      <div className='moveBar' />
+      <div className='moveBar' data-tauri-drag-region />
       <div className={!openStatus ? "opacity-100" : "hidden"}>
         <RoleBox />
       </div>
