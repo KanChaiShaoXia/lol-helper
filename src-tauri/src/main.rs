@@ -12,30 +12,40 @@ fn main() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+extern crate winapi;
+use std::mem::zeroed;
+use std::os::windows::prelude::*;
+use winapi::shared::minwindef::{BOOL, DWORD, HWND, LPARAM, LPVOID, UINT};
+use winapi::um::winuser::{
+    FindWindowExA, GetClassNameA, GetWindowTextA, IsWindowVisible, ShowWindow,
+};
 
-// Tauri - src-tauri/src/main.rs
-
-use windows::Win32::Foundation::GetWindowTextW;
-use windows::Win32::Foundation::WCHAR;
-use windows::Win32::Foundation::{HWND, LPARAM};
-use windows::Win32::UI::WindowsAndMessaging::{EnumWindows, SetForegroundWindow};
-
-#[tauri::command]
-fn focus_other_app() {
-    unsafe {
-        EnumWindows(Some(enum_windows_callback), LPARAM(0));
-    }
-}
-
-unsafe extern "system" fn enum_windows_callback(hwnd: HWND, lparam: LPARAM) -> bool {
-    let mut buffer = [0 as WCHAR; 512];
-    let _ = GetWindowTextW(hwnd, buffer.as_mut_ptr(), buffer.len() as i32);
-    let title = String::from_utf16(&buffer).unwrap().to_lowercase();
-
-    if title.contains("target_app") {
-        SetForegroundWindow(hwnd);
-        return false; // break enumeration
+fn enum_windows_callback() {
+    // Find all windows on the system
+    let mut hwnd = zeroed();
+    while FindWindowExA(None, hwnd, None, None).is_some() {
+        hwnd = Some(hwnd.unwrap());
     }
 
-    return true; // continue enumeration
+    // Iterate over the found windows and check if they match our criteria
+    for hwnd in hwnd {
+        let mut class_name = [0u8; 256];
+        let mut window_text = [0u8; 256];
+        let mut visible = false;
+
+        // Get the class name and window text for the current window
+        GetClassNameA(hwnd, &mut class_name);
+        GetWindowTextA(hwnd, &mut window_text);
+
+        // Check if the window is visible and has the desired class name and window text
+        if IsWindowVisible(hwnd) && class_name == b"kcsx\0" && window_text == b"kcsx\0" {
+            visible = true;
+        }
+
+        // If the window is visible and matches our criteria, focus it
+        if visible {
+            ShowWindow(hwnd, SW_SHOWNORMAL);
+            break;
+        }
+    }
 }
