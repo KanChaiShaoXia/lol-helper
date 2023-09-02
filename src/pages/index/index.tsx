@@ -1,4 +1,5 @@
 import { LogicalSize, appWindow } from "@tauri-apps/api/window";
+import { invoke } from "@tauri-apps/api/tauri";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SkillBar from "../../components/skill-bar";
@@ -41,6 +42,9 @@ export default function Index() {
       className='overflow-hidden flex h-screen border-2 border-p1 text-p2 relative items-center justify-between pb-2 flex-col'
       style={{
         backgroundImage: "linear-gradient(#010A13, #010F19)",
+      }}
+      onClick={() => {
+        invoke("focus_other_app");
       }}
       onContextMenu={(e) => e.preventDefault()}
     >
